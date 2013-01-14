@@ -46,7 +46,8 @@ Ext.define('MIStar.controller.module.UserAdmin', {
 
         record = Ext.create('MIStar.model.User');
         record.set(values);
-        record.setId(0);
+
+        console.log(values);
 
         me.getUsersStore().add(record);
         win.close();

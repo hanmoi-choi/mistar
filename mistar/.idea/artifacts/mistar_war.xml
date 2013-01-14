@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="mistar:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="mistar-0.1.0.BUILD-SNAPSHOT.war">
+      <element id="artifact" artifact-name="mistar:war exploded" />
+    </root>
+  </artifact>
+</component>

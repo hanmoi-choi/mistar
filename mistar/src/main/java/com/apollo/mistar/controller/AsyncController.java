@@ -16,14 +16,12 @@
 package com.apollo.mistar.controller;
 
 import com.apollo.mistar.util.AtmosphereUtils;
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import org.atmosphere.cpr.AtmosphereResource;
 import org.atmosphere.cpr.Broadcaster;
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,8 +45,8 @@ public class AsyncController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(AsyncController.class);
 
-	@Autowired
-	private ObjectMapper objectMapper;
+//	@Autowired
+//	private ObjectMapper objectMapper;
 
 
 
@@ -79,8 +77,6 @@ public class AsyncController {
 	 * a broadcasts periodically.
 	 *
 	 * @throws java.io.IOException
-	 * @throws org.codehaus.jackson.map.JsonMappingException
-	 * @throws org.codehaus.jackson.JsonGenerationException
 	 */
 	@RequestMapping(value = "async", method = RequestMethod.GET)
 	@ResponseBody

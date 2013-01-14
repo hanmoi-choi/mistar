@@ -58,7 +58,9 @@ Ext.define('MIStar.view.module.UserAdmin',{
                         xtype: 'textfield',
                         name: 'id',
                         fieldLabel: 'User Id',
-                        allowBlank: false
+                        allowBlank: false,
+                        vtype: 'email'
+
                     },
 
                     {

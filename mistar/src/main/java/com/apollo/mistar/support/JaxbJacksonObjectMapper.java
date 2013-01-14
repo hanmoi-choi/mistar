@@ -15,31 +15,19 @@
  */
 package com.apollo.mistar.support;
 
-import org.codehaus.jackson.annotate.JsonTypeInfo;
-import org.codehaus.jackson.map.AnnotationIntrospector;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.xc.JaxbAnnotationIntrospector;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.AnnotationIntrospector;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector;
 
-/**
- * Customized Jackson {@link org.codehaus.jackson.map.ObjectMapper} to add:
- *
- * <ol>
- *     <li>Jaxb annoation support using the {@link JaxbAnnotationIntrospector}</li>
- *     <li>Type Information to the generated JSON</li>
- * </ol>
- * .
- * @author Gunnar Hillert
- * @since 1.0.0
- *
- */
 public class JaxbJacksonObjectMapper extends ObjectMapper {
 
 	public JaxbJacksonObjectMapper() {
-		final AnnotationIntrospector introspector = new JaxbAnnotationIntrospector();
-		super.getDeserializationConfig().withAnnotationIntrospector(introspector);
-		super.getSerializationConfig().withAnnotationIntrospector(introspector);
+		final AnnotationIntrospector introspector = new JacksonAnnotationIntrospector();
+        super.getDeserializationConfig().withAppendedAnnotationIntrospector(introspector);
+		super.getSerializationConfig().withAppendedAnnotationIntrospector(introspector);
 
-		this.enableDefaultTypingAsProperty(DefaultTyping.JAVA_LANG_OBJECT, JsonTypeInfo.Id.CLASS.getDefaultPropertyName());
+		this.enableDefaultTypingAsProperty(ObjectMapper.DefaultTyping.JAVA_LANG_OBJECT, JsonTypeInfo.Id.CLASS.getDefaultPropertyName());
 	}
 
 }

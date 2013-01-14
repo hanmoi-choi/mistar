@@ -41,10 +41,11 @@ Ext.define('MIStar.controller.system.Desktop', {
         desktopCfg = me.getDesktopConfig();
         me.desktop = new MIStar.view.system.Desktop(desktopCfg);
 
-        me.viewport = new Ext.container.Viewport({
-            layout: 'fit',
-            items: [ me.desktop ]
-        });
+        me.viewport = Ext.create('Ext.container.Viewport', {
+                layout: 'fit',
+                items: [ me.desktop ]
+            }
+        );
 
         me.addEvents(
             'ready',
@@ -52,8 +53,28 @@ Ext.define('MIStar.controller.system.Desktop', {
         );
 
         Ext.EventManager.on(window, 'beforeunload', me.onUnload, me);
+        Ext.EventManager.on(window, 'ready', me.onReady, me);
         me.isReady = true;
         me.fireEvent('ready', me);
+
+        //init data
+        Ext.Ajax.request({
+            url: MIStar.Constant.SERVER_URL+'/init',
+            method: 'POST',
+            success: function(response){
+                var returnMsg = response.responseText;
+
+                var userConfig = Ext.decode(returnMsg);
+                var wallpaperImage = userConfig['wallPaperImage'];
+                var isStreched = userConfig['isStreched'];
+
+                console.log(wallpaperImage);
+                console.log(isStreched);
+
+                console.log(me);
+                me.desktop.setWallpaper(wallpaperImage, isStreched);
+            }
+        });
     },
 
     getModules : function(){
@@ -203,6 +224,12 @@ Ext.define('MIStar.controller.system.Desktop', {
         if (this.fireEvent('beforeunload', this) === false) {
             e.stopEvent();
         }
+    },
+
+    onSettings: function(){
+        Ext.create('MIStar.view.system.Settings',{
+            desktop:this.desktop}
+        ).show();
     }
 });
 

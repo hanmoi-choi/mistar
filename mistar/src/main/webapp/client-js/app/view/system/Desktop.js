@@ -356,7 +356,6 @@ Ext.define('MIStar.view.system.Desktop', {
     },
 
     getWindow: function(id) {
-        console.log(this.windows);
         return this.windows.get(id);
     },
 

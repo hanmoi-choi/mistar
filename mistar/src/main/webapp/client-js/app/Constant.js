@@ -11,5 +11,6 @@
 Ext.define('MIStar.Constant',{
     singleton: true,
 
-    WALLPAPER_IMAGE_PATH: 'resources/images/wallpapers/'
-})
+    WALLPAPER_IMAGE_PATH: 'public-resources/images/wallpapers/',
+    SERVER_URL: 'http://localhost:8080/mi'
+});

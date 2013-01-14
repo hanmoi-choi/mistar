@@ -30,7 +30,8 @@ Ext.define('MIStar.view.system.Settings',{
         'Ext.layout.container.Border',
         'Ext.data.TreeStore',
 
-        'MIStar.model.system.Wallpaper'
+        'MIStar.model.system.Wallpaper',
+        'MIStar.Constant'
     ],
 
     layout: 'anchor',
@@ -40,11 +41,9 @@ Ext.define('MIStar.view.system.Settings',{
     height: 480,
     border: false,
 
-    contructor: function () {
-
-        console.log('view');
-        Ext.define
+    initComponent: function () {
         var me = this;
+        console.log(me);
 
         me.selected = me.desktop.getWallpaper();
         me.stretch = me.desktop.wallpaper.stretch;
@@ -150,6 +149,26 @@ Ext.define('MIStar.view.system.Settings',{
         if (me.selected) {
             me.desktop.setWallpaper(me.selected, me.stretch);
         }
+
+        console.log(me.selected);
+        console.log(me.stretch);
+        Ext.Ajax.useDefaultXhrHeader=false;
+        Ext.Ajax.request({
+            url: MIStar.Constant.SERVER_URL+'/user/changeConfig',
+            headers: {
+                'Content-Type' : 'application/json'
+            },
+            method: 'POST',
+            jsonData:{
+                wallPaperImage: me.selected,
+                isStreched: me.stretch
+            },
+            success: function(response){
+                var returnMsg = response.responseText;
+
+                console.log(returnMsg);
+            }
+        });
         me.destroy();
     },
 

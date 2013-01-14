@@ -1,6 +1,7 @@
 package com.apollo.mistar.model;
 
-import org.codehaus.jackson.annotate.JsonTypeInfo;
+
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.io.Serializable;
 import java.util.Date;

@@ -13,7 +13,7 @@ Ext.define('MIStar.controller.module.Notepad', {
     },
 
     createWindow : function(){
-
+        var me = this;
         var desktop = this.app.getDesktop();
         var win = desktop.getWindow(me.viewId);
 

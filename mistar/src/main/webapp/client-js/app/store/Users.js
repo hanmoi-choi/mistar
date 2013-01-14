@@ -11,13 +11,14 @@ Ext.define('MIStar.store.Users',{
     extend: 'Ext.data.Store',
 
     model:'MIStar.model.User',
+    requires:['MIStar.Constant'],
 
     proxy: {
         type: 'ajax',
-        url:'http://localhost:8080/mi/user/add',
+        method: 'POST',
 
         api: {
-            update: 'http://localhost:8080/mi/user/add'
+            create: MIStar.Constant.SERVER_URL+'/user/add'
         },
         reader: {
             type: 'json',
